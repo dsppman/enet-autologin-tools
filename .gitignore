@@ -1,0 +1,9 @@
+.DS_Store
+venv/
+.venv/
+.idea/
+*.pyc
+*.pyo
+.vscode
+.cache/
+.pytest_cache/
