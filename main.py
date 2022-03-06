@@ -29,7 +29,7 @@ class CampusNet:
         logging.debug('network connection times=%s s' % times)
         need_login = 'location' in r.headers and 'enet.10000.gd.cn' in r.headers['location']
         if need_login and self.wlan_ac_ip is None and self.wlan_user_ip is None:
-            enet_url = self.resp_headers['location']
+            enet_url = r.headers['location']
             enet_query = dict(parse_qsl(urlparse(enet_url).query))
             if 'wlanacip' in enet_query and 'wlanuserip' in enet_query:
                 self.setWlanACIP(enet_query['wlanacip'])
