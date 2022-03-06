@@ -9,7 +9,7 @@ from urllib.parse import urlparse, parse_qsl
 import pytesseract
 import requests
 import rsa
-import ddddocr
+# import ddddocr
 from PIL import Image
 
 
@@ -60,12 +60,12 @@ class CampusNet:
         self.setCode(result)
         return result
 
-    def setCodeByDdddocr(self):
-        ocr = ddddocr.DdddOcr()
-        result = ocr.classification(self.getCodeImage())
-        logging.debug("ddddocr result=%s" % result)
-        self.setCode(result)
-        return result
+    # def setCodeByDdddocr(self):
+    #     ocr = ddddocr.DdddOcr()
+    #     result = ocr.classification(self.getCodeImage())
+    #     logging.debug("ddddocr result=%s" % result)
+    #     self.setCode(result)
+    #     return result
 
     def login(self):
         login_url = "http://enet.10000.gd.cn:10001/ajax/login"
@@ -102,8 +102,8 @@ def handle_args():
     parser = argparse.ArgumentParser(description='Campus Network Control.')
     parser.add_argument('-u', '--username', type=str, required=True, help='Set the username')
     parser.add_argument('-p', '--password', type=str, required=True, help='Set the password')
-    parser.add_argument('-t', '--time', type=int, help='Set the network test retry time (s)', default=10)
-    parser.add_argument('-o', '--ocr', type=str, help='Set the ocr engine to use (tesseract, ddddocr)', default='ddddocr')
+    parser.add_argument('-i', '--intervals', type=int, help='Set the network test intervals (s)', default=10)
+    # parser.add_argument('-o', '--ocr', type=str, help='Set the ocr engine to use (tesseract, ddddocr)', default='tesseract')
     parser.add_argument('--userip', type=str, help='Set the wlan user ip')
     parser.add_argument('--acip', type=str, help='Set the wlan ac ip')
     parser.add_argument('--log-level', type=str, help='Set the logging level', default='info')
@@ -133,13 +133,14 @@ if __name__ == '__main__':
             if cnet.needLogin():
                 # 获取验证码，如果没够四位则重新获取
                 while True:
-                    code = None
-                    if args.engine == 'tesseract':
-                        code = cnet.setCodeByTesseract()
-                    elif args.engine == 'ddddocr':
-                        code = cnet.setCodeByDdddocr()
-                    else:
-                        raise 'Failed to set ocr engine.'
+                    # code = None
+                    code = cnet.setCodeByTesseract()
+                    # if args.engine == 'tesseract':
+                    #     code = cnet.setCodeByTesseract()
+                    # elif args.engine == 'ddddocr':
+                    #     code = cnet.setCodeByDdddocr()
+                    # else:
+                    #     raise 'Failed to set ocr engine.'
                     if len(code) != 4:
                         logging.debug("The result doesn't seem to be right so that need to get it again")
                         continue
@@ -151,7 +152,7 @@ if __name__ == '__main__':
                         elif ret_code == 11063000:
                             continue
                     raise "login failed."
-            time.sleep(args.intvals)
+            time.sleep(args.intervals)
 
     except Exception as e:
         logging.error(e)
