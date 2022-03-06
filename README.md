@@ -51,8 +51,11 @@ $ python main.py -u [账号] -p [密码] -log-output=$(pwd)/1.log
 ```shell
 $ cd enet-autologin-tools
 $ docker build -t cnet-docker .
+$ docker run cnet-docker -u [账号] -p [密码]
+```
+### Running on Docker Daemon
+```shell
 $ docker run -d cnet-docker -u [账号] -p [密码]
 ```
-
 ## About
 如果觉得能帮到你的话就给个Star🌟吧～
