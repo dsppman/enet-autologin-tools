@@ -9,6 +9,7 @@ from urllib.parse import urlparse, parse_qsl
 import pytesseract
 import requests
 import rsa
+import ddddocr
 from PIL import Image
 
 
