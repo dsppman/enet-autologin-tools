@@ -9,6 +9,8 @@
 - pip (pip3)
 - Tesseract
 
+> 关于tesseract在windows怎么安装，可以参考这篇文章 [🔗链接直达](https://blog.csdn.net/u010454030/article/details/80515501)
+
 ## Installation
 ```shell
 $ git clone https://github.com/dsppman/enet-autologin-tools.git

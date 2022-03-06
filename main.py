@@ -106,7 +106,7 @@ def handle_args():
     # parser.add_argument('-o', '--ocr', type=str, help='Set the ocr engine to use (tesseract, ddddocr)', default='tesseract')
     parser.add_argument('--userip', type=str, help='Set the wlan user ip')
     parser.add_argument('--acip', type=str, help='Set the wlan ac ip')
-    parser.add_argument('--log-level', type=str, help='Set the logging level', default='info')
+    parser.add_argument('--log-level', type=str, help='Set the logging level', default='debug')
     parser.add_argument('--log-output', type=str, help='Set eht logging output')
     args = parser.parse_args()
     return args
@@ -148,6 +148,7 @@ if __name__ == '__main__':
                     if 'resultCode' in result:
                         ret_code = int(result['resultCode'])
                         if ret_code == 0:
+                            logging.info('登录成功')
                             break
                         elif ret_code == 11063000:
                             continue
