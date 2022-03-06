@@ -102,7 +102,7 @@ def handle_args():
     parser.add_argument('-u', '--username', type=str, required=True, help='Set the username')
     parser.add_argument('-p', '--password', type=str, required=True, help='Set the password')
     parser.add_argument('-t', '--time', type=int, help='Set the network test retry time (s)', default=10)
-    parser.add_argument('-o', '--ocr', type=str, help='Set the ocr engine to use (tesseract, ddddocr)', default='tesseract')
+    parser.add_argument('-o', '--ocr', type=str, help='Set the ocr engine to use (tesseract, ddddocr)', default='ddddocr')
     parser.add_argument('--userip', type=str, help='Set the wlan user ip')
     parser.add_argument('--acip', type=str, help='Set the wlan ac ip')
     parser.add_argument('--log-level', type=str, help='Set the logging level', default='info')
